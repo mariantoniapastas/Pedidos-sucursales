@@ -8,38 +8,32 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Barlow', sans-serif; background: #F4F7F9; color: #1A1A1A; min-height: 100vh; }
-
-/* ── SCREENS ── */
 .screen { display: none; }
 .screen.active { display: block; }
 
-/* ── HEADER ── */
 header { background: #1C3A4A; padding: 16px 20px 13px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
 .header-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 26px; color: white; letter-spacing: 4px; text-transform: uppercase; line-height: 1; }
 .header-sub { font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 3px; text-transform: uppercase; margin-top: 3px; }
 .header-back { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); font-size: 12px; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-family: inherit; }
-.header-back:hover { background: rgba(255,255,255,0.2); color: white; }
 .header-right { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); display: flex; gap: 6px; }
 .header-btn { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); font-size: 11px; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-family: inherit; }
 .header-btn:hover { background: rgba(255,255,255,0.2); color: white; }
+.header-btn.active-tab { background: white; color: #1C3A4A; border-color: white; }
 
-/* ── LOGIN SCREEN ── */
-.login-wrap { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px 80px; background: #1C3A4A; position: relative; }
+/* LOGIN */
+.login-wrap { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px 80px; background: #1C3A4A; }
 .login-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 48px; color: white; letter-spacing: 6px; text-transform: uppercase; line-height: 1; }
 .login-tagline { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 4px; text-transform: uppercase; margin-top: 8px; margin-bottom: 56px; }
-.login-box { width: 100%; max-width: 320px; }
-.login-select-wrap { position: relative; margin-bottom: 14px; }
+.login-select-wrap { position: relative; margin-bottom: 14px; width: 100%; max-width: 320px; }
 .login-select { width: 100%; padding: 18px 20px; border-radius: 14px; border: none; background: white; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 1px; color: #1C3A4A; appearance: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.25); }
-.login-select option[value=""] { color: #9CA3AF; font-weight: 400; font-size: 16px; font-family: 'Barlow', sans-serif; }
 .login-select-arrow { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 14px; color: #6B7280; }
-.login-btn { width: 100%; padding: 16px; border-radius: 12px; border: none; background: rgba(255,255,255,0.15); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 2px; text-transform: uppercase; color: white; cursor: pointer; transition: all 0.15s; margin-top: 4px; }
-.login-btn:hover { background: rgba(255,255,255,0.22); }
+.login-btn { width: 100%; max-width: 320px; padding: 16px; border-radius: 12px; border: none; background: rgba(255,255,255,0.15); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 2px; text-transform: uppercase; color: white; cursor: pointer; transition: all 0.15s; }
 .login-btn:disabled { opacity: 0.35; cursor: default; }
 .remember-row { display: flex; align-items: center; gap: 10px; margin-top: 16px; cursor: pointer; }
-.remember-row input[type=checkbox] { width: 18px; height: 18px; accent-color: white; cursor: pointer; flex-shrink: 0; }
+.remember-row input[type=checkbox] { width: 18px; height: 18px; accent-color: white; cursor: pointer; }
 .remember-row span { font-size: 13px; color: rgba(255,255,255,0.55); }
 
-/* ── PIN SCREEN ── */
+/* PIN */
 .pin-wrap { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px 20px; background: #1C3A4A; }
 .pin-card { background: white; border-radius: 16px; padding: 28px 24px; width: 100%; max-width: 340px; box-shadow: 0 8px 32px rgba(0,0,0,0.25); text-align: center; }
 .pin-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: #6B7280; margin-bottom: 4px; }
@@ -50,22 +44,21 @@ header { background: #1C3A4A; padding: 16px 20px 13px; text-align: center; posit
 .pin-dot.error { background: #D0021B; border-color: #D0021B; }
 .pin-keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .pin-key { padding: 14px; border-radius: 10px; border: 1.5px solid #D0DDE5; background: white; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; cursor: pointer; transition: all 0.12s; color: #1C3A4A; }
-.pin-key:hover { background: #E8F0F4; border-color: #1C3A4A; }
 .pin-key:active { background: #1C3A4A; color: white; }
 .pin-key.del { font-size: 16px; color: #6B7280; font-weight: 400; font-family: inherit; }
 .pin-error { color: #D0021B; font-size: 12px; margin-bottom: 12px; min-height: 18px; }
 .pin-back { margin-top: 16px; background: none; border: none; color: rgba(255,255,255,0.6); font-family: inherit; font-size: 13px; cursor: pointer; }
-.pin-back:hover { color: white; }
 
-/* ── ORDER FORM ── */
+/* ORDER */
 .container { max-width: 640px; margin: 0 auto; padding: 20px 14px 110px; }
 .sucursal-block { background: #1C3A4A; border-radius: 12px; padding: 18px; margin-bottom: 20px; }
 .sucursal-block label { display: block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
 .sucursal-name-display { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; color: white; letter-spacing: 1px; padding: 8px 0 10px; }
-.sucursal-block input[type=date] { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.12); color: white; font-family: inherit; font-size: 14px; }
+.horario-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 4px 12px; font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 4px; }
+.horario-badge.fuera { background: rgba(240,192,64,0.2); border-color: rgba(240,192,64,0.4); color: #F0C040; }
 .category { background: white; border-radius: 12px; overflow: hidden; border: 1px solid #D0DDE5; margin-bottom: 14px; }
 .cat-header { background: #1C3A4A; color: white; padding: 11px 16px; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
-.cat-header .arrow { font-size: 15px; transition: transform 0.2s; display: inline-block; }
+.cat-header .arrow { font-size: 15px; transition: transform 0.2s; }
 .cat-header.collapsed .arrow { transform: rotate(-90deg); }
 .cat-body.hidden { display: none; }
 .product-row { display: flex; align-items: center; padding: 9px 14px; border-bottom: 1px solid #D0DDE5; gap: 8px; transition: background 0.15s; }
@@ -74,44 +67,72 @@ header { background: #1C3A4A; padding: 16px 20px 13px; text-align: center; posit
 .product-row.disabled { opacity: 0.35; pointer-events: none; background: #F8F8F8; }
 .product-name { flex: 1; font-size: 13.5px; line-height: 1.3; }
 .unit-badge { font-size: 10px; background: #F0F4F7; color: #6B7280; padding: 2px 7px; border-radius: 20px; white-space: nowrap; border: 1px solid #D0DDE5; font-weight: 500; }
-.disabled-badge { font-size: 10px; background: #FFF0F0; color: #C0392B; padding: 2px 7px; border-radius: 20px; white-space: nowrap; border: 1px solid #FADBD8; font-weight: 500; display: none; }
+.disabled-badge { font-size: 10px; background: #FFF0F0; color: #C0392B; padding: 2px 7px; border-radius: 20px; border: 1px solid #FADBD8; font-weight: 500; display: none; }
 .product-row.disabled .disabled-badge { display: inline; }
 .product-row.disabled .unit-badge { display: none; }
 .qty-control { display: flex; align-items: center; gap: 5px; }
-.qty-btn { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid #D0DDE5; background: white; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 300; line-height: 1; padding: 0; font-family: inherit; }
-.qty-btn:hover { border-color: #1C3A4A; color: #1C3A4A; }
+.qty-btn { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid #D0DDE5; background: white; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: 300; padding: 0; font-family: inherit; }
 .qty-input { width: 42px; text-align: center; border: 1.5px solid #D0DDE5; border-radius: 7px; padding: 4px 2px; font-size: 14px; font-weight: 600; font-family: inherit; color: #1A1A1A; background: white; }
 .qty-input.active { border-color: #1C3A4A; background: #E8F0F4; }
 .comments-block { background: white; border: 1px solid #D0DDE5; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
 .comments-block label { display: block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #6B7280; margin-bottom: 8px; font-weight: 600; }
-.comments-block textarea { width: 100%; border: 1.5px solid #D0DDE5; border-radius: 8px; padding: 10px 12px; font-family: inherit; font-size: 14px; color: #1A1A1A; resize: vertical; min-height: 80px; line-height: 1.5; }
+.comments-block textarea { width: 100%; border: 1.5px solid #D0DDE5; border-radius: 8px; padding: 10px 12px; font-family: inherit; font-size: 14px; resize: vertical; min-height: 80px; line-height: 1.5; }
 .summary-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #122530; padding: 13px 20px; display: flex; align-items: center; gap: 12px; z-index: 200; box-shadow: 0 -3px 16px rgba(0,0,0,0.3); }
-.s-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
 .s-count { font-size: 17px; font-weight: 600; color: white; }
 .s-count span { color: #7BB8D4; }
 .btn-primary { background: white; color: #1C3A4A; border: none; padding: 12px 24px; border-radius: 9px; font-family: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
+.review-actions { position: fixed; bottom: 0; left: 0; right: 0; background: #122530; padding: 13px 16px; display: flex; gap: 10px; z-index: 200; box-shadow: 0 -3px 16px rgba(0,0,0,0.3); }
 .btn-ghost { flex: 1; padding: 12px; border: 1.5px solid rgba(255,255,255,0.2); border-radius: 9px; background: transparent; color: white; font-family: inherit; font-weight: 500; font-size: 14px; cursor: pointer; }
 .btn-confirm { flex: 2; padding: 12px; border: none; border-radius: 9px; background: white; color: #1C3A4A; font-family: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
-.review-actions { position: fixed; bottom: 0; left: 0; right: 0; background: #122530; padding: 13px 16px; display: flex; gap: 10px; z-index: 200; box-shadow: 0 -3px 16px rgba(0,0,0,0.3); }
 .review-header-block { background: #1C3A4A; border-radius: 12px; padding: 16px 20px; margin-bottom: 18px; color: white; display: flex; justify-content: space-between; align-items: center; }
 .review-suc { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: 1px; }
 .review-section { background: white; border: 1px solid #D0DDE5; border-radius: 12px; overflow: hidden; margin-bottom: 14px; }
 .review-cat-title { background: #E8F0F4; color: #1C3A4A; padding: 9px 16px; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; border-bottom: 1px solid #D0DDE5; }
-.col-heads { display: flex; padding: 6px 16px; background: #F8FAFC; border-bottom: 1px solid #D0DDE5; }
-.col-heads span { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #6B7280; font-weight: 500; }
 .review-item { display: flex; align-items: center; padding: 10px 16px; border-bottom: 1px solid #D0DDE5; gap: 6px; font-size: 13.5px; }
 .review-item:last-child { border-bottom: none; }
-.subtotal-row { display: flex; justify-content: space-between; padding: 9px 16px; background: #F4F7F9; border-top: 1px solid #D0DDE5; font-size: 13px; color: #6B7280; }
-.subtotal-row span:last-child { font-weight: 700; color: #1C3A4A; }
 .total-block { background: #1C3A4A; border-radius: 12px; padding: 18px 20px; color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 .total-amount { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: 1px; }
-.success-screen { text-align: center; padding: 80px 20px; max-width: 480px; margin: 0 auto; }
+.success-screen { text-align: center; padding: 60px 20px; max-width: 480px; margin: 0 auto; }
 .success-icon { font-size: 64px; margin-bottom: 20px; }
 .success-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 32px; letter-spacing: 2px; text-transform: uppercase; color: #1C3A4A; margin-bottom: 12px; }
-.success-text { color: #6B7280; font-size: 15px; line-height: 1.7; margin-bottom: 30px; }
-.btn-nuevo { background: #1C3A4A; color: white; padding: 13px 32px; border-radius: 10px; border: none; font-family: inherit; font-weight: 600; font-size: 15px; cursor: pointer; }
+.success-text { color: #6B7280; font-size: 15px; line-height: 1.7; margin-bottom: 24px; }
+.success-info { background: white; border: 1px solid #D0DDE5; border-radius: 12px; padding: 14px 18px; margin-bottom: 24px; text-align: left; }
+.success-info-row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; }
+.success-info-label { color: #6B7280; }
+.success-info-val { font-weight: 600; color: #1C3A4A; }
+.btn-nuevo { background: #1C3A4A; color: white; padding: 13px 32px; border-radius: 10px; border: none; font-family: inherit; font-weight: 600; font-size: 15px; cursor: pointer; margin-right: 10px; }
+.btn-historial-link { background: white; color: #1C3A4A; padding: 13px 24px; border-radius: 10px; border: 1.5px solid #1C3A4A; font-family: inherit; font-weight: 600; font-size: 15px; cursor: pointer; }
 
-/* ── CHANGE PIN SCREEN ── */
+/* HISTORIAL */
+.historial-list { max-width: 640px; margin: 0 auto; padding: 20px 14px 40px; }
+.historial-empty { text-align: center; padding: 60px 20px; color: #6B7280; }
+.pedido-card { background: white; border: 1px solid #D0DDE5; border-radius: 12px; overflow: hidden; margin-bottom: 14px; cursor: pointer; transition: box-shadow 0.15s; }
+.pedido-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.pedido-card-header { padding: 14px 18px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #D0DDE5; }
+.pedido-card-header.expanded { border-bottom-color: #D0DDE5; }
+.pedido-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 1px; color: #6B7280; }
+.pedido-fecha { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; color: #1C3A4A; flex: 1; }
+.pedido-hora { font-size: 11px; color: #6B7280; }
+.estado-badge { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+.estado-pendiente { background: #E8F0F4; color: #1C3A4A; }
+.estado-parcial { background: #FFF8E6; color: #7A5C00; }
+.estado-despachado { background: #E8F7EF; color: #1A6640; }
+.editado-badge { font-size: 10px; background: #FFF0F5; color: #9B1B5A; border: 1px solid #F5C0D8; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+.pedido-card-body { padding: 0; }
+.pedido-body-section { padding: 12px 18px; border-bottom: 1px solid #F0F4F7; }
+.pedido-body-section:last-child { border-bottom: none; }
+.pedido-cat-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #6B7280; font-weight: 700; margin-bottom: 8px; }
+.pedido-item-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 0.5px solid #F0F4F7; font-size: 13px; }
+.pedido-item-row:last-child { border-bottom: none; }
+.pedido-item-name { flex: 1; }
+.pedido-item-editado { font-size: 11px; color: #9B1B5A; background: #FFF0F5; border: 1px solid #F5C0D8; padding: 1px 6px; border-radius: 4px; display: flex; align-items: center; gap: 3px; white-space: nowrap; }
+.pedido-item-qty { font-weight: 700; color: #1C3A4A; min-width: 60px; text-align: right; }
+.pedido-item-despacho { font-size: 11px; color: #1A6640; background: #E8F7EF; border: 1px solid #B8DFC8; padding: 1px 7px; border-radius: 4px; white-space: nowrap; }
+.pedido-item-faltante { font-size: 11px; color: #C0392B; background: #FFF0F0; border: 1px solid #FADBD8; padding: 1px 7px; border-radius: 4px; white-space: nowrap; }
+.pedido-edit-btn { background: #E8F0F4; color: #1C3A4A; border: 1px solid #D0DDE5; padding: 6px 14px; border-radius: 7px; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+.pedido-edit-btn:disabled { opacity: 0.4; cursor: default; }
+
+/* CHANGE PIN */
 .change-pin-wrap { max-width: 400px; margin: 40px auto; padding: 0 16px; }
 .change-pin-card { background: white; border-radius: 14px; padding: 24px; border: 1px solid #D0DDE5; }
 .change-pin-card h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: 2px; text-transform: uppercase; color: #1C3A4A; margin-bottom: 20px; }
@@ -120,48 +141,61 @@ header { background: #1C3A4A; padding: 16px 20px 13px; text-align: center; posit
 .form-field input { width: 100%; padding: 11px 14px; border: 1.5px solid #D0DDE5; border-radius: 8px; font-family: inherit; font-size: 16px; letter-spacing: 4px; text-align: center; font-weight: 700; }
 .form-field input:focus { outline: none; border-color: #1C3A4A; }
 .btn-full { width: 100%; padding: 13px; background: #1C3A4A; color: white; border: none; border-radius: 9px; font-family: inherit; font-weight: 700; font-size: 15px; cursor: pointer; margin-top: 6px; }
-.msg-ok { color: #1A6640; font-size: 13px; margin-top: 10px; min-height: 18px; }
+.msg-ok  { color: #1A6640; font-size: 13px; margin-top: 10px; min-height: 18px; }
 .msg-err { color: #D0021B; font-size: 13px; margin-top: 10px; min-height: 18px; }
+
+/* MODAL EDICION */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 500; display: none; align-items: flex-end; justify-content: center; }
+.modal-overlay.open { display: flex; }
+.modal-sheet { background: #F4F7F9; border-radius: 20px 20px 0 0; width: 100%; max-width: 640px; max-height: 85vh; overflow-y: auto; padding-bottom: 20px; }
+.modal-header { background: #1C3A4A; color: white; padding: 16px 20px; border-radius: 20px 20px 0 0; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
+.modal-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: 2px; text-transform: uppercase; }
+.modal-close { background: rgba(255,255,255,0.15); border: none; color: white; width: 28px; height: 28px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.modal-body { padding: 16px; }
+.edit-item-row { display: flex; align-items: center; background: white; border: 1px solid #D0DDE5; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; gap: 10px; }
+.edit-item-name { flex: 1; font-size: 13.5px; line-height: 1.3; }
+.edit-item-cat { font-size: 10px; color: #6B7280; }
+.edit-changed { background: #FFF5FC; border-color: #F5C0D8; }
+.edit-changed-label { font-size: 10px; color: #9B1B5A; font-weight: 700; }
+.modal-footer { padding: 0 16px; display: flex; gap: 10px; }
+.btn-cancel-modal { flex: 1; padding: 13px; border: 1.5px solid #D0DDE5; border-radius: 9px; background: white; font-family: inherit; font-weight: 600; font-size: 14px; cursor: pointer; color: #6B7280; }
+.btn-save-edit { flex: 2; padding: 13px; border: none; border-radius: 9px; background: #1C3A4A; color: white; font-family: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
 </style>
 </head>
 <body>
 
-<!-- ══ SCREEN: LOGIN ══ -->
+<!-- LOGIN -->
 <div id="screenLogin" class="screen active" style="min-height:100vh">
   <div class="login-wrap">
     <div class="login-logo">MARIANTONIA</div>
     <div class="login-tagline">pastas frescas</div>
-    <div class="login-box">
-      <div class="login-select-wrap">
-        <select class="login-select" id="sucursalSelect" onchange="onSelectChange()">
-          <option value="">Seleccioná tu sucursal</option>
-          <option value="bernal">Bernal</option>
-          <option value="quilmes">Quilmes</option>
-          <option value="don-bosco">Don Bosco</option>
-        </select>
-        <span class="login-select-arrow">▾</span>
-      </div>
-      <button class="login-btn" id="loginBtn" onclick="loginWithSelect()" disabled>Ingresar</button>
-      <label class="remember-row">
-        <input type="checkbox" id="rememberMe">
-        <span>Recordarme en este dispositivo</span>
-      </label>
+    <div class="login-select-wrap">
+      <select class="login-select" id="sucursalSelect" onchange="onSelectChange()">
+        <option value="">Seleccioná tu sucursal</option>
+        <option value="bernal">Bernal</option>
+        <option value="quilmes">Quilmes</option>
+        <option value="don-bosco">Don Bosco</option>
+      </select>
+      <span class="login-select-arrow">▾</span>
     </div>
+    <button class="login-btn" id="loginBtn" onclick="loginWithSelect()" disabled>Ingresar</button>
+    <label class="remember-row">
+      <input type="checkbox" id="rememberMe">
+      <span>Recordarme en este dispositivo</span>
+    </label>
   </div>
 </div>
 
-<!-- ══ SCREEN: PIN ══ -->
+<!-- PIN -->
 <div id="screenPin" class="screen" style="min-height:100vh;background:#1C3A4A">
   <div class="pin-wrap">
     <div class="pin-card">
       <div class="pin-title" id="pinTitle">Ingresá tu PIN</div>
       <div class="pin-suc" id="pinSucName"></div>
-      <div style="font-size:12px;color:#6B7280;margin-bottom:18px;min-height:16px" id="pinSubtitle">Ingresá tu PIN</div>
-      <div class="pin-dots" id="pinDots">
-        <div class="pin-dot" id="pd0"></div>
-        <div class="pin-dot" id="pd1"></div>
-        <div class="pin-dot" id="pd2"></div>
-        <div class="pin-dot" id="pd3"></div>
+      <div style="font-size:12px;color:#6B7280;margin-bottom:18px;min-height:16px" id="pinSubtitle"></div>
+      <div class="pin-dots">
+        <div class="pin-dot" id="pd0"></div><div class="pin-dot" id="pd1"></div>
+        <div class="pin-dot" id="pd2"></div><div class="pin-dot" id="pd3"></div>
       </div>
       <div class="pin-error" id="pinError"></div>
       <div class="pin-keypad">
@@ -183,18 +217,20 @@ header { background: #1C3A4A; padding: 16px 20px 13px; text-align: center; posit
   </div>
 </div>
 
-<!-- ══ SCREEN: ORDER FORM ══ -->
+<!-- ORDER -->
 <div id="screenOrder" class="screen">
   <header style="position:relative">
     <button class="header-back" onclick="goLogin()">← Salir</button>
     <div class="header-title">MARIANTONIA</div>
     <div class="header-sub" id="orderHeaderSub">Pedido a Fábrica</div>
     <div class="header-right">
-      <button class="header-btn" onclick="goChangePin()">🔑 PIN</button>
+      <button class="header-btn" id="tabPedidoBtn" onclick="showOrderTab('form')">Nuevo</button>
+      <button class="header-btn" id="tabHistorialBtn" onclick="showOrderTab('historial')">Historial</button>
+      <button class="header-btn" onclick="goChangePin()">🔑</button>
     </div>
   </header>
 
-  <!-- Pending alert step -->
+  <!-- Pending alert -->
   <div id="orderPendingStep" style="display:none">
     <div class="container">
       <div style="background:#1C3A4A;border-radius:12px;padding:20px;margin-bottom:20px;color:white">
@@ -205,44 +241,43 @@ header { background: #1C3A4A; padding: 16px 20px 13px; text-align: center; posit
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
           <span style="font-size:22px">⏳</span>
           <div>
-            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:1px;color:#7A5C00;text-transform:uppercase">Tenés mercadería pendiente de entrega</div>
-            <div style="font-size:12px;color:#9A7C20;margin-top:2px">Ya está elaborada o en proceso. Va a llegar aunque no la pidas.</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:1px;color:#7A5C00;text-transform:uppercase">Tenés mercadería pendiente</div>
+            <div style="font-size:12px;color:#9A7C20;margin-top:2px">Ya está elaborada o en proceso.</div>
           </div>
         </div>
         <div id="pendingAlertRows"></div>
         <div style="margin-top:14px;padding:12px;background:rgba(240,192,64,0.15);border-radius:8px;font-size:12px;color:#7A5C00;line-height:1.6">
-          <strong>¿Necesitás más?</strong> Cargá solo la cantidad adicional en el pedido de hoy. La mercadería pendiente se suma automáticamente.
+          <strong>¿Necesitás más?</strong> Cargá solo la cantidad adicional.
         </div>
       </div>
       <button onclick="showOrderStep('form')" style="width:100%;padding:15px;background:#1C3A4A;color:white;border:none;border-radius:12px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:2px;text-transform:uppercase;cursor:pointer">Continuar al pedido →</button>
     </div>
   </div>
 
-  <!-- Form step -->
+  <!-- Form -->
   <div id="orderFormStep">
     <div class="container">
       <div class="sucursal-block">
         <label>Sucursal</label>
         <div class="sucursal-name-display" id="orderSucDisplay"></div>
-        <label style="margin-top:4px">Fecha de entrega</label>
-        <input type="date" id="fecha">
+        <div id="horarioBadge" class="horario-badge">🕐 Entrega: hoy</div>
       </div>
       <div id="categoriesContainer"></div>
       <div class="comments-block">
         <label>Comentarios / Novedades</label>
-        <textarea id="comentarios" placeholder="Usá este espacio para aclaraciones importantes, productos de cambio, consultas o cualquier novedad que la fábrica tenga que saber antes de preparar tu pedido."></textarea>
+        <textarea id="comentarios" placeholder="Aclaraciones importantes, productos de cambio, consultas..."></textarea>
       </div>
     </div>
     <div class="summary-bar">
       <div style="flex:1">
-        <div class="s-label">Productos cargados</div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4)">Productos cargados</div>
         <div class="s-count"><span id="totalItems">0</span> ítems</div>
       </div>
-      <button class="btn-primary" onclick="goReview()">Revisar pedido →</button>
+      <button class="btn-primary" onclick="goReview()">Revisar →</button>
     </div>
   </div>
 
-  <!-- Review step -->
+  <!-- Review -->
   <div id="orderReviewStep" style="display:none">
     <div class="container" id="reviewContent"></div>
     <div class="review-actions">
@@ -251,18 +286,32 @@ header { background: #1C3A4A; padding: 16px 20px 13px; text-align: center; posit
     </div>
   </div>
 
-  <!-- Success step -->
+  <!-- Success -->
   <div id="orderSuccessStep" style="display:none">
     <div class="success-screen">
       <div class="success-icon">🍝</div>
       <div class="success-title">¡Pedido Enviado!</div>
-      <p class="success-text">El pedido de <strong id="successSucursal"></strong> fue registrado correctamente.<br>Martín ya lo puede ver desde fábrica.</p>
-      <button class="btn-nuevo" onclick="resetOrder()">Cargar nuevo pedido</button>
+      <p class="success-text">El pedido fue registrado correctamente.</p>
+      <div class="success-info" id="successInfo"></div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="btn-nuevo" onclick="resetOrder()">Nuevo pedido</button>
+        <button class="btn-historial-link" onclick="showOrderTab('historial')">Ver historial →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Historial -->
+  <div id="orderHistorialStep" style="display:none">
+    <div class="historial-list" id="historialContent">
+      <div class="historial-empty">
+        <div style="font-size:48px;margin-bottom:16px">📋</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;color:#1C3A4A;text-transform:uppercase;letter-spacing:1px">Cargando historial...</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ══ SCREEN: CHANGE PIN ══ -->
+<!-- CHANGE PIN -->
 <div id="screenChangePin" class="screen">
   <header style="position:relative">
     <button class="header-back" onclick="showScreen('screenOrder')">← Volver</button>
@@ -272,18 +321,9 @@ header { background: #1C3A4A; padding: 16px 20px 13px; text-align: center; posit
   <div class="change-pin-wrap">
     <div class="change-pin-card">
       <h2>Cambiar PIN — <span id="changePinSucName"></span></h2>
-      <div class="form-field">
-        <label>PIN actual</label>
-        <input type="password" inputmode="numeric" maxlength="4" id="cpCurrent" placeholder="••••">
-      </div>
-      <div class="form-field">
-        <label>PIN nuevo (4 dígitos)</label>
-        <input type="password" inputmode="numeric" maxlength="4" id="cpNew" placeholder="••••">
-      </div>
-      <div class="form-field">
-        <label>Confirmar PIN nuevo</label>
-        <input type="password" inputmode="numeric" maxlength="4" id="cpConfirm" placeholder="••••">
-      </div>
+      <div class="form-field"><label>PIN actual</label><input type="password" inputmode="numeric" maxlength="4" id="cpCurrent" placeholder="••••"></div>
+      <div class="form-field"><label>PIN nuevo</label><input type="password" inputmode="numeric" maxlength="4" id="cpNew" placeholder="••••"></div>
+      <div class="form-field"><label>Confirmar PIN nuevo</label><input type="password" inputmode="numeric" maxlength="4" id="cpConfirm" placeholder="••••"></div>
       <button class="btn-full" onclick="saveNewPin()">Guardar nuevo PIN</button>
       <div class="msg-ok" id="cpOk"></div>
       <div class="msg-err" id="cpErr"></div>
@@ -291,9 +331,27 @@ header { background: #1C3A4A; padding: 16px 20px 13px; text-align: center; posit
   </div>
 </div>
 
+<!-- MODAL EDICION -->
+<div class="modal-overlay" id="modalEdicion">
+  <div class="modal-sheet">
+    <div class="modal-header">
+      <div class="modal-title">✏️ Editar pedido</div>
+      <button class="modal-close" onclick="closeEditModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalEdicionBody"></div>
+    <div style="padding:8px 16px;font-size:11px;color:#6B7280;text-align:center" id="modalEdicionInfo"></div>
+    <div class="modal-footer">
+      <button class="btn-cancel-modal" onclick="closeEditModal()">Cancelar</button>
+      <button class="btn-save-edit" onclick="saveEdit()">Guardar cambios</button>
+    </div>
+  </div>
+</div>
+
 <script>
-// ══ CONSTANTS ══
+const API_URL = 'https://script.google.com/macros/s/AKfycbwxFNL4JT1ZFkArGuwQmo6yEtjK-SQXtqGhQBPuHrbBfmnrZuaHjAEqC0ADkt0a80qd/exec';
 const SUC_NAMES = { bernal: "Bernal", quilmes: "Quilmes", "don-bosco": "Don Bosco" };
+const HORA_CORTE_PEDIDO  = 7;
+const HORA_CORTE_EDICION = 6.5;
 const PRODUCTS = [
   {idx:0,  cat:"Ravioles Tradicionales", name:"Carne y Verdura",              price:4400,  unit:"Caja"},
   {idx:1,  cat:"Ravioles Tradicionales", name:"Ricotta",                       price:4400,  unit:"Caja"},
@@ -369,255 +427,260 @@ const CATS = [...new Set(PRODUCTS.map(p => p.cat))];
 const COLLAPSED_DEFAULT = ["Ravioles Especiales","Fideos","Ñoquis","Lasañas","Masas","Hecho a Mano","Congelados"];
 const fmt = n => "$" + n.toLocaleString("es-AR");
 
-// ══ STATE ══
+// STATE
 let currentRole = null;
 let pinBuffer = "";
 let pinMode = "enter";
 let pinNewBuffer = "";
+let _pinsLoaded = false;
+let _pinsPromise = null;
 const qtys = {};
-
-// ══ API CONFIG ══
-const API_URL = 'https://script.google.com/macros/s/AKfycbzH5GWzB5PNyYvqmqWbtvYRkOv_q2q4HIiZ85ygfy5mkNxGSST8Seu_MK5tprrebz0u/exec';
-
+let _lastPedidoId = null;
+let _editingPedido = null;
+let _editQtys = {};
 let _cache = { pins: {}, fab_pin: '0000', disabled: [], pending: {} };
 
-// ══ API — JSONP QUEUE ══
+// API
 const _queue = [];
 let _queueRunning = false;
 
 function api(params) {
-  const writeActions = ['savePedido','savePendientes','saveDisabled','savePins'];
-  if (writeActions.includes(params.action)) return apiWrite(params);
-  return apiRead(params);
+  const writeActions = ['savePedido','editPedido','savePendientes','saveDisabled','savePins'];
+  return writeActions.includes(params.action) ? apiWrite(params) : apiRead(params);
 }
-
 function apiRead(params) {
-  return new Promise((resolve) => {
-    _queue.push({ params, resolve });
-    if (!_queueRunning) _runQueue();
-  });
+  return new Promise(resolve => { _queue.push({params,resolve}); if(!_queueRunning) _runQueue(); });
 }
-
 async function _runQueue() {
   _queueRunning = true;
-  while (_queue.length > 0) {
-    const { params, resolve } = _queue.shift();
-    const result = await _jsonp(params);
-    resolve(result);
-  }
+  while(_queue.length > 0) { const {params,resolve} = _queue.shift(); resolve(await _jsonp(params)); }
   _queueRunning = false;
 }
-
 function _jsonp(params) {
-  return new Promise((resolve) => {
-    const cbName = 'cb_' + Date.now() + '_' + Math.floor(Math.random()*99999);
-    const script = document.createElement('script');
+  return new Promise(resolve => {
+    const cb = 'cb_'+Date.now()+'_'+Math.floor(Math.random()*99999);
+    const s = document.createElement('script');
     let done = false;
-    const timer = setTimeout(() => { if (done) return; done=true; cleanup(); resolve(null); }, 12000);
-    window[cbName] = (data) => { if (done) return; done=true; cleanup(); resolve(data); };
-    function cleanup() { clearTimeout(timer); delete window[cbName]; if (script.parentNode) script.parentNode.removeChild(script); }
-    script.onerror = () => { if (!done) { done=true; cleanup(); resolve(null); } };
-    script.src = API_URL + '?' + new URLSearchParams({ ...params, callback: cbName }).toString();
-    document.head.appendChild(script);
+    const t = setTimeout(()=>{if(!done){done=true;cleanup();resolve(null);}},12000);
+    window[cb] = d=>{if(!done){done=true;cleanup();resolve(d);}};
+    function cleanup(){clearTimeout(t);delete window[cb];if(s.parentNode)s.parentNode.removeChild(s);}
+    s.onerror = ()=>{if(!done){done=true;cleanup();resolve(null);}};
+    s.src = API_URL+'?'+new URLSearchParams({...params,callback:cb}).toString();
+    document.head.appendChild(s);
   });
 }
-
 function apiWrite(params) {
-  return fetch(API_URL, {
-    method: 'POST',
-    body: JSON.stringify(params),
-    headers: { 'Content-Type': 'text/plain' }
-  }).then(r => r.json()).catch(() => null);
+  return fetch(API_URL,{method:'POST',body:JSON.stringify(params),headers:{'Content-Type':'text/plain'}})
+    .then(r=>r.json()).catch(()=>null);
 }
 
-// ══ SYNC HELPERS ══
-function loadPins()    { return _cache.pins; }
-function loadDisabled(){ return _cache.disabled; }
-function loadPending() { return _cache.pending; }
-
-async function savePins(pins) { _cache.pins = pins; await api({ action: 'savePins', data: JSON.stringify({ pins }) }); }
-async function saveDisabled(d) { _cache.disabled = d; await api({ action: 'saveDisabled', data: JSON.stringify(d) }); }
-async function savePedido(pedido) { await api({ action: 'savePedido', data: JSON.stringify(pedido) }); }
-async function savePending(p) { _cache.pending = p; await api({ action: 'savePendientes', data: JSON.stringify(p) }); }
-
-// ══ LOADING OVERLAY ══
+// LOADING
 function showLoading(on) {
   let el = document.getElementById('loadingOverlay');
-  if (!el) {
-    el = document.createElement('div');
-    el.id = 'loadingOverlay';
-    el.style.cssText = 'position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:9999;background:rgba(0,0,0,0.3)';
-    const inner = document.createElement('div');
-    inner.style.cssText = 'background:rgba(28,58,74,0.92);color:white;padding:16px 28px;border-radius:12px;font-weight:700;font-size:16px;letter-spacing:2px';
-    inner.textContent = 'CARGANDO...';
-    el.appendChild(inner);
-    document.body.appendChild(el);
-  }
+  if(!el){el=document.createElement('div');el.id='loadingOverlay';el.style.cssText='position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:9999;background:rgba(0,0,0,0.3)';const i=document.createElement('div');i.style.cssText='background:rgba(28,58,74,0.92);color:white;padding:16px 28px;border-radius:12px;font-weight:700;font-size:16px;letter-spacing:2px';i.textContent='CARGANDO...';el.appendChild(i);document.body.appendChild(el);}
   el.style.display = on ? 'flex' : 'none';
 }
 
-// ══ LOCAL STORAGE ══
-function loadRemembered() { return JSON.parse(localStorage.getItem('ma_remembered') || 'null'); }
-function saveRemembered(role) { localStorage.setItem('ma_remembered', JSON.stringify(role)); }
-function clearRemembered() { localStorage.removeItem('ma_remembered'); }
+// HELPERS
+function getFechaEntrega() {
+  const now = new Date();
+  const hora = now.getHours() + now.getMinutes()/60;
+  if(hora < HORA_CORTE_PEDIDO) return now.toISOString().split('T')[0];
+  const m = new Date(now); m.setDate(m.getDate()+1);
+  return m.toISOString().split('T')[0];
+}
+function puedeEditar() {
+  const now = new Date();
+  const hora = now.getHours() + now.getMinutes()/60;
+  return hora < HORA_CORTE_EDICION;
+}
+function formatFecha(str) {
+  if(!str) return '';
+  const [y,m,d] = str.split('-');
+  const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  return `${parseInt(d)} ${meses[parseInt(m)-1]} ${y}`;
+}
+function formatTs(ts) {
+  if(!ts) return '';
+  const d = new Date(ts);
+  return d.toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit'}) + ' ' +
+         d.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+}
+function loadRemembered() { return JSON.parse(localStorage.getItem('ma_remembered')||'null'); }
+function saveRemembered(r){ localStorage.setItem('ma_remembered',JSON.stringify(r)); }
+function clearRemembered(){ localStorage.removeItem('ma_remembered'); }
 
-// ══ NAVIGATION ══
+// NAVIGATION
 function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
 }
-
 function goLogin() {
-  currentRole = null; pinBuffer = ""; pinMode = "enter";
+  currentRole=null; pinBuffer=""; pinMode="enter";
   clearRemembered();
-  document.getElementById('sucursalSelect').value = '';
-  document.getElementById('loginBtn').disabled = true;
+  document.getElementById('sucursalSelect').value='';
+  document.getElementById('loginBtn').disabled=true;
   showScreen('screenLogin');
 }
-
 function onSelectChange() {
-  const val = document.getElementById('sucursalSelect').value;
-  document.getElementById('loginBtn').disabled = !val;
+  document.getElementById('loginBtn').disabled = !document.getElementById('sucursalSelect').value;
 }
-
 function loginWithSelect() {
   const val = document.getElementById('sucursalSelect').value;
-  if (!val) return;
+  if(!val) return;
   selectRole(val);
 }
-
 function selectRole(role) {
   currentRole = role;
   pinBuffer = "";
   clearPinDots();
-  document.getElementById('pinError').textContent = '';
-  const pins = loadPins();
-  if (!pins[role]) {
-    pinMode = "create";
-    document.getElementById('pinTitle').textContent = 'Primera vez';
-    document.getElementById('pinSucName').textContent = SUC_NAMES[role].toUpperCase();
-    document.getElementById('pinSubtitle').textContent = 'Creá tu PIN de 4 dígitos';
+  document.getElementById('pinError').textContent='';
+  const pins = _cache.pins;
+  if(!pins[role]) {
+    pinMode='create';
+    document.getElementById('pinTitle').textContent='Primera vez';
+    document.getElementById('pinSucName').textContent=SUC_NAMES[role].toUpperCase();
+    document.getElementById('pinSubtitle').textContent='Creá tu PIN de 4 dígitos';
   } else {
-    pinMode = "enter";
-    document.getElementById('pinTitle').textContent = 'Bienvenido';
-    document.getElementById('pinSucName').textContent = SUC_NAMES[role].toUpperCase();
-    document.getElementById('pinSubtitle').textContent = 'Ingresá tu PIN';
+    pinMode='enter';
+    document.getElementById('pinTitle').textContent='Bienvenido';
+    document.getElementById('pinSucName').textContent=SUC_NAMES[role].toUpperCase();
+    document.getElementById('pinSubtitle').textContent='Ingresá tu PIN';
   }
   showScreen('screenPin');
 }
 
-// ══ PIN LOGIC ══
-function clearPinDots() {
-  for (let i=0;i<4;i++) { const d=document.getElementById('pd'+i); d.classList.remove('filled','error'); }
-}
-
+// PIN
+function clearPinDots() { for(let i=0;i<4;i++){const d=document.getElementById('pd'+i);d.classList.remove('filled','error');} }
 function pinPress(digit) {
-  if (pinBuffer.length >= 4) return;
-  pinBuffer += digit;
+  if(pinBuffer.length>=4) return;
+  pinBuffer+=digit;
   document.getElementById('pd'+(pinBuffer.length-1)).classList.add('filled');
-  if (pinBuffer.length === 4) setTimeout(checkPin, 120);
+  if(pinBuffer.length===4) setTimeout(checkPin,120);
 }
-
 function pinDel() {
-  if (!pinBuffer.length) return;
+  if(!pinBuffer.length) return;
   document.getElementById('pd'+(pinBuffer.length-1)).classList.remove('filled');
-  pinBuffer = pinBuffer.slice(0,-1);
-  document.getElementById('pinError').textContent = '';
+  pinBuffer=pinBuffer.slice(0,-1);
+  document.getElementById('pinError').textContent='';
 }
-
 function checkPin() {
-  const pins = loadPins();
-  if (pinMode === 'create') {
-    pinNewBuffer = pinBuffer; pinBuffer = ""; clearPinDots();
-    document.getElementById('pinSubtitle').textContent = 'Confirmá tu PIN';
-    document.getElementById('pinError').textContent = '';
-    pinMode = 'confirm'; return;
+  const pins = _cache.pins;
+  if(pinMode==='create') {
+    pinNewBuffer=pinBuffer; pinBuffer=""; clearPinDots();
+    document.getElementById('pinSubtitle').textContent='Confirmá tu PIN';
+    document.getElementById('pinError').textContent='';
+    pinMode='confirm'; return;
   }
-  if (pinMode === 'confirm') {
-    if (pinBuffer === pinNewBuffer) {
-      pins[currentRole] = pinBuffer;
-      savePins(pins);
-      if (document.getElementById('rememberMe').checked) saveRemembered(currentRole);
+  if(pinMode==='confirm') {
+    if(pinBuffer===pinNewBuffer) {
+      pins[currentRole]=pinBuffer; savePins(pins);
+      if(document.getElementById('rememberMe').checked) saveRemembered(currentRole);
       enterOrder();
     } else {
-      pinError('Los PINs no coinciden. Intentá de nuevo.');
-      setTimeout(() => { pinNewBuffer=""; pinMode='create'; document.getElementById('pinSubtitle').textContent='Creá tu PIN de 4 dígitos'; }, 950);
+      pinError('Los PINs no coinciden.');
+      setTimeout(()=>{pinNewBuffer="";pinMode='create';document.getElementById('pinSubtitle').textContent='Creá tu PIN de 4 dígitos';},950);
     }
     return;
   }
-  if (pinBuffer === (pins[currentRole] || '')) {
-    if (document.getElementById('rememberMe').checked) saveRemembered(currentRole);
+  if(pinBuffer===(pins[currentRole]||'')) {
+    if(document.getElementById('rememberMe').checked) saveRemembered(currentRole);
     enterOrder();
   } else {
-    pinError('PIN incorrecto. Intentá de nuevo.');
+    pinError('PIN incorrecto.');
   }
 }
-
 function pinError(msg) {
-  document.getElementById('pinError').textContent = msg;
-  for (let i=0;i<4;i++) { const d=document.getElementById('pd'+i); d.classList.remove('filled'); d.classList.add('error'); }
-  setTimeout(() => { pinBuffer=""; clearPinDots(); document.getElementById('pinError').textContent=''; }, 900);
+  document.getElementById('pinError').textContent=msg;
+  for(let i=0;i<4;i++){const d=document.getElementById('pd'+i);d.classList.remove('filled');d.classList.add('error');}
+  setTimeout(()=>{pinBuffer="";clearPinDots();document.getElementById('pinError').textContent='';},900);
+}
+async function savePins(pins) {
+  _cache.pins=pins;
+  await api({action:'savePins',data:JSON.stringify({pins})});
 }
 
-// ══ ORDER ENTRY ══
+// ORDER ENTRY
 async function enterOrder() {
   const sucName = SUC_NAMES[currentRole];
   document.getElementById('orderSucDisplay').textContent = sucName;
-  document.getElementById('orderHeaderSub').textContent = sucName + ' — Pedido a Fábrica';
+  document.getElementById('orderHeaderSub').textContent = sucName;
   document.getElementById('changePinSucName').textContent = sucName;
-  const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate()+1);
-  document.getElementById('fecha').value = tomorrow.toISOString().split('T')[0];
-  // Mostrar formulario de inmediato, sin esperar la API
+  updateHorarioBadge();
   buildCategories();
   showOrderStep('form');
+  showOrderTab('form');
   showScreen('screenOrder');
-  // Cargar datos en background
   try {
     const results = await Promise.all([
-      api({ action: 'getDisabled' }).catch(() => null),
-      api({ action: 'getPendientes' }).catch(() => null),
-      api({ action: 'getPins' }).catch(() => null)
+      api({action:'getDisabled'}).catch(()=>null),
+      api({action:'getPendientes'}).catch(()=>null),
+      api({action:'getPins'}).catch(()=>null)
     ]);
-    let disabledChanged = false;
-    if (results[0] && results[0].ok) { _cache.disabled = results[0].data; disabledChanged = true; }
-    if (results[1] && results[1].ok) { _cache.pending = results[1].data; }
-    if (results[2] && results[2].ok) { _cache.pins = results[2].data; _cache.fab_pin = results[2].fab_pin; }
-    if (disabledChanged) buildCategories();
-    const myPending = (_cache.pending[currentRole] || []);
-    if (myPending.length > 0) showPendingAlert(myPending);
+    if(results[0]&&results[0].ok) { _cache.disabled=results[0].data; buildCategories(); }
+    if(results[1]&&results[1].ok) _cache.pending=results[1].data;
+    if(results[2]&&results[2].ok) { _cache.pins=results[2].data; }
+    const myPending=(_cache.pending[currentRole]||[]);
+    if(myPending.length>0) showPendingAlert(myPending);
   } catch(e) { console.error(e); }
 }
 
+function updateHorarioBadge() {
+  const now = new Date();
+  const hora = now.getHours() + now.getMinutes()/60;
+  const badge = document.getElementById('horarioBadge');
+  const fechaEntrega = getFechaEntrega();
+  const hoy = new Date().toISOString().split('T')[0];
+  if(hora < HORA_CORTE_PEDIDO) {
+    badge.className='horario-badge';
+    badge.textContent='🕐 Entrega: hoy';
+  } else {
+    badge.className='horario-badge fuera';
+    badge.textContent='🌙 Entrega: mañana ('+formatFecha(fechaEntrega)+')';
+  }
+}
+
 function showPendingAlert(items) {
-  const rows = items.map(i => `
+  const rows = items.map(i=>`
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(240,192,64,0.3)">
-      <div><div style="font-size:14px;font-weight:600;color:#1A1A1A">${i.name}</div><div style="font-size:11px;color:#6B7280;margin-top:2px">${i.cat}</div></div>
+      <div><div style="font-size:14px;font-weight:600">${i.name}</div><div style="font-size:11px;color:#6B7280">${i.cat}</div></div>
       <div style="text-align:right"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;color:#1C3A4A">${i.qty}</div><div style="font-size:11px;color:#6B7280">${i.unit}</div></div>
     </div>`).join('');
-  document.getElementById('pendingAlertSuc').textContent = SUC_NAMES[currentRole].toUpperCase();
-  document.getElementById('pendingAlertRows').innerHTML = rows;
+  document.getElementById('pendingAlertSuc').textContent=SUC_NAMES[currentRole].toUpperCase();
+  document.getElementById('pendingAlertRows').innerHTML=rows;
   showOrderStep('pending');
 }
 
 function goChangePin() { showScreen('screenChangePin'); }
 
-// ══ ORDER FORM ══
+function showOrderTab(tab) {
+  document.getElementById('tabPedidoBtn').classList.toggle('active-tab', tab==='form');
+  document.getElementById('tabHistorialBtn').classList.toggle('active-tab', tab==='historial');
+  if(tab==='historial') {
+    showOrderStep('historial');
+    loadHistorial();
+  } else {
+    showOrderStep('form');
+  }
+}
+
+// CATEGORIES
 function buildCategories() {
-  const disabled = loadDisabled();
+  const disabled = _cache.disabled || [];
   const container = document.getElementById('categoriesContainer');
-  container.innerHTML = '';
+  container.innerHTML='';
   CATS.forEach(cat => {
     const collapsed = COLLAPSED_DEFAULT.includes(cat);
-    const products = PRODUCTS.filter(p => p.cat === cat);
+    const products = PRODUCTS.filter(p=>p.cat===cat);
     const div = document.createElement('div');
-    div.className = 'category';
-    div.innerHTML = `
+    div.className='category';
+    div.innerHTML=`
       <div class="cat-header ${collapsed?'collapsed':''}" onclick="toggleCat(this)">
         <span>${cat}</span><span class="arrow">▾</span>
       </div>
       <div class="cat-body ${collapsed?'hidden':''}">
-        ${products.map(p => `
+        ${products.map(p=>`
           <div class="product-row ${disabled.includes(p.idx)?'disabled':''}" id="row-${p.idx}">
             <div class="product-name">${p.name}</div>
             <span class="disabled-badge">No disponible</span>
@@ -633,154 +696,276 @@ function buildCategories() {
   });
   updateCounter();
 }
-
 function toggleCat(h) { h.classList.toggle('collapsed'); h.nextElementSibling.classList.toggle('hidden'); }
-
-function change(idx, delta) {
-  const input = document.getElementById('qty-'+idx);
-  setQty(idx, (parseInt(input.value)||0) + delta);
-}
-
+function change(idx, delta) { const i=document.getElementById('qty-'+idx); setQty(idx,(parseInt(i.value)||0)+delta); }
 function setQty(idx, val) {
-  const v = Math.max(0, parseInt(val)||0);
-  qtys[idx] = v;
-  const row = document.getElementById('row-'+idx);
-  const input = document.getElementById('qty-'+idx);
-  if (row) row.classList.toggle('active', v>0);
-  if (input) { input.value = v; input.classList.toggle('active', v>0); }
+  const v=Math.max(0,parseInt(val)||0); qtys[idx]=v;
+  const row=document.getElementById('row-'+idx);
+  const input=document.getElementById('qty-'+idx);
+  if(row) row.classList.toggle('active',v>0);
+  if(input){input.value=v;input.classList.toggle('active',v>0);}
   updateCounter();
 }
-
-function updateCounter() {
-  document.getElementById('totalItems').textContent = Object.values(qtys).filter(v=>v>0).length;
-}
-
+function updateCounter() { document.getElementById('totalItems').textContent=Object.values(qtys).filter(v=>v>0).length; }
 function getOrdered() {
-  const disabled = loadDisabled();
-  return PRODUCTS.filter(p => (qtys[p.idx]||0)>0 && !disabled.includes(p.idx)).map(p => ({...p, qty:qtys[p.idx]}));
+  const disabled=_cache.disabled||[];
+  return PRODUCTS.filter(p=>(qtys[p.idx]||0)>0&&!disabled.includes(p.idx)).map(p=>({...p,qty:qtys[p.idx]}));
 }
-
 function showOrderStep(step) {
-  document.getElementById('orderPendingStep').style.display = step==='pending' ? 'block' : 'none';
-  document.getElementById('orderFormStep').style.display    = step==='form'    ? 'block' : 'none';
-  document.getElementById('orderReviewStep').style.display  = step==='review'  ? 'block' : 'none';
-  document.getElementById('orderSuccessStep').style.display = step==='success' ? 'block' : 'none';
+  document.getElementById('orderPendingStep').style.display  = step==='pending'  ?'block':'none';
+  document.getElementById('orderFormStep').style.display     = step==='form'     ?'block':'none';
+  document.getElementById('orderReviewStep').style.display   = step==='review'   ?'block':'none';
+  document.getElementById('orderSuccessStep').style.display  = step==='success'  ?'block':'none';
+  document.getElementById('orderHistorialStep').style.display= step==='historial'?'block':'none';
   window.scrollTo(0,0);
 }
 
+// REVIEW
 function goReview() {
-  const ordered = getOrdered();
-  if (!ordered.length) { alert('No cargaste ningún producto.'); return; }
-  const fecha = document.getElementById('fecha').value;
-  const sucName = SUC_NAMES[currentRole];
-  const comentarios = document.getElementById('comentarios').value;
-  const byCategory = {};
-  ordered.forEach(item => { if(!byCategory[item.cat]) byCategory[item.cat]=[]; byCategory[item.cat].push(item); });
-  const grandTotal = ordered.reduce((s,i)=>s+i.qty*i.price,0);
-  const myPending = (_cache.pending[currentRole] || []);
-  let html = `<div class="review-header-block">
+  const ordered=getOrdered();
+  if(!ordered.length){alert('No cargaste ningún producto.');return;}
+  const sucName=SUC_NAMES[currentRole];
+  const comentarios=document.getElementById('comentarios').value;
+  const fechaEntrega=getFechaEntrega();
+  const byCategory={};
+  ordered.forEach(item=>{if(!byCategory[item.cat])byCategory[item.cat]=[];byCategory[item.cat].push(item);});
+  const grandTotal=ordered.reduce((s,i)=>s+i.qty*i.price,0);
+  const myPending=(_cache.pending[currentRole]||[]);
+  let html=`<div class="review-header-block">
     <div><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:0.5;margin-bottom:4px">Sucursal</div>
     <div class="review-suc">${sucName.toUpperCase()}</div></div>
-    <div style="text-align:right;font-size:13px;opacity:0.6">${fecha}</div>
+    <div style="text-align:right;font-size:13px;opacity:0.6">Entrega: ${formatFecha(fechaEntrega)}</div>
   </div>`;
-  if (myPending.length > 0) {
-    html += `<div style="background:#FFF8E6;border:1.5px solid #F0C040;border-radius:12px;padding:14px 16px;margin-bottom:14px">
+  if(myPending.length>0){
+    html+=`<div style="background:#FFF8E6;border:1.5px solid #F0C040;border-radius:12px;padding:14px 16px;margin-bottom:14px">
       <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#7A5C00;font-weight:700;margin-bottom:10px">⏳ Pendiente de entrega</div>
-      ${myPending.map(i=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(240,192,64,0.3);font-size:13px;">
-        <span style="color:#5A4010">${i.name} <span style="font-size:11px;color:#9A7C20">(${i.cat})</span></span>
-        <span style="font-weight:700;color:#7A5C00">${i.qty} ${i.unit}</span>
-      </div>`).join('')}
+      ${myPending.map(i=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(240,192,64,0.3);font-size:13px">
+        <span style="color:#5A4010">${i.name}</span><span style="font-weight:700;color:#7A5C00">${i.qty} ${i.unit}</span></div>`).join('')}
     </div>`;
   }
-  Object.entries(byCategory).forEach(([cat,items]) => {
-    const catTotal = items.reduce((s,i)=>s+i.qty*i.price,0);
-    html += `<div class="review-section">
+  Object.entries(byCategory).forEach(([cat,items])=>{
+    const catTotal=items.reduce((s,i)=>s+i.qty*i.price,0);
+    html+=`<div class="review-section">
       <div class="review-cat-title">${cat}</div>
-      <div class="col-heads"><span style="flex:1">Producto</span><span style="min-width:52px;text-align:right">Cant.</span><span style="min-width:74px;text-align:right">Precio</span><span style="min-width:84px;text-align:right">Total</span></div>
       ${items.map(i=>`<div class="review-item">
         <span style="flex:1">${i.name}</span>
-        <span style="min-width:52px;text-align:right;color:#6B7280;font-size:13px">${i.qty} ${i.unit}</span>
-        <span style="min-width:74px;text-align:right;color:#6B7280;font-size:13px">${fmt(i.price)}</span>
+        <span style="min-width:50px;text-align:right;color:#6B7280;font-size:13px">${i.qty} ${i.unit}</span>
         <span style="min-width:84px;text-align:right;font-weight:700;color:#1C3A4A">${fmt(i.qty*i.price)}</span>
       </div>`).join('')}
-      <div class="subtotal-row"><span>Subtotal</span><span>${fmt(catTotal)}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:9px 16px;background:#F4F7F9;border-top:1px solid #D0DDE5;font-size:13px;color:#6B7280">
+        <span>Subtotal</span><span style="font-weight:700;color:#1C3A4A">${fmt(catTotal)}</span>
+      </div>
     </div>`;
   });
-  if (comentarios) html += `<div style="background:white;border:1px solid #D0DDE5;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:13.5px;color:#6B7280;font-style:italic;line-height:1.6"><div style="font-style:normal;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-weight:600">Comentarios</div>${comentarios}</div>`;
-  html += `<div class="total-block"><div><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:0.5">Total del pedido</div><div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:3px">${ordered.length} productos · ${sucName}</div></div><div class="total-amount">${fmt(grandTotal)}</div></div>`;
-  document.getElementById('reviewContent').innerHTML = html;
+  if(comentarios) html+=`<div style="background:white;border:1px solid #D0DDE5;border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:13.5px;color:#6B7280;font-style:italic;line-height:1.6"><div style="font-style:normal;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-weight:600">Comentarios</div>${comentarios}</div>`;
+  html+=`<div class="total-block"><div><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:0.5">Total del pedido</div><div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:3px">${ordered.length} productos</div></div><div class="total-amount">${fmt(grandTotal)}</div></div>`;
+  document.getElementById('reviewContent').innerHTML=html;
   showOrderStep('review');
 }
 
 async function confirmOrder() {
-  const ordered = getOrdered();
-  const fecha = document.getElementById('fecha').value;
-  const comentarios = document.getElementById('comentarios').value;
-  const pedido = { sucursal: currentRole, fecha, comentarios, items: ordered.map(i => ({ cat: i.cat, name: i.name, qty: i.qty, unit: i.unit, price: i.price })) };
+  const ordered=getOrdered();
+  const comentarios=document.getElementById('comentarios').value;
+  const pedido={sucursal:currentRole,comentarios,items:ordered.map(i=>({cat:i.cat,name:i.name,qty:i.qty,unit:i.unit,price:i.price}))};
   showLoading(true);
-  try { await savePedido(pedido); } catch(e) { console.error(e); }
+  const res = await api({action:'savePedido',data:JSON.stringify(pedido)}).catch(()=>null);
   showLoading(false);
-  Object.keys(qtys).forEach(k => { qtys[k] = 0; });
-  document.getElementById('comentarios').value = '';
-  document.getElementById('successSucursal').textContent = SUC_NAMES[currentRole];
-  showOrderStep('success');
+  if(res&&res.ok) {
+    _lastPedidoId = res.id;
+    const fechaEntrega = res.fecha_entrega;
+    document.getElementById('successInfo').innerHTML=`
+      <div class="success-info-row"><span class="success-info-label">Sucursal</span><span class="success-info-val">${SUC_NAMES[currentRole]}</span></div>
+      <div class="success-info-row"><span class="success-info-label">Entrega</span><span class="success-info-val">${formatFecha(fechaEntrega)}</span></div>
+      <div class="success-info-row"><span class="success-info-label">Productos</span><span class="success-info-val">${ordered.length} ítems</span></div>
+      <div class="success-info-row"><span class="success-info-label">Referencia</span><span class="success-info-val" style="font-size:11px">${res.id}</span></div>`;
+    Object.keys(qtys).forEach(k=>{qtys[k]=0;});
+    document.getElementById('comentarios').value='';
+    showOrderStep('success');
+  } else {
+    alert('Error al enviar el pedido. Intentá de nuevo.');
+  }
 }
 
-function resetOrder() {
-  Object.keys(qtys).forEach(k => { qtys[k]=0; });
-  document.getElementById('comentarios').value = '';
-  buildCategories();
-  showOrderStep('form');
+function resetOrder() { Object.keys(qtys).forEach(k=>{qtys[k]=0;}); buildCategories(); showOrderStep('form'); updateHorarioBadge(); }
+
+// HISTORIAL
+async function loadHistorial() {
+  document.getElementById('historialContent').innerHTML=`<div class="historial-empty"><div style="font-size:48px;margin-bottom:16px">⏳</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;color:#1C3A4A;text-transform:uppercase;letter-spacing:1px">Cargando...</div></div>`;
+  const res = await api({action:'getHistorial',sucursal:currentRole}).catch(()=>null);
+  if(!res||!res.ok||!res.data.length) {
+    document.getElementById('historialContent').innerHTML=`<div class="historial-empty"><div style="font-size:48px;margin-bottom:16px">📋</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;color:#1C3A4A;text-transform:uppercase;letter-spacing:1px">Sin pedidos todavía</div></div>`;
+    return;
+  }
+  renderHistorial(res.data);
 }
 
-// ══ CHANGE PIN ══
+function renderHistorial(pedidos) {
+  const puedeEdit = puedeEditar();
+  let html = '';
+  pedidos.forEach(p => {
+    const estadoClass = `estado-${p.estado}`;
+    const estadoLabel = p.estado==='pendiente'?'Pendiente':p.estado==='parcial'?'Parcial':p.estado==='despachado'?'Despachado':'—';
+    const bycat = {};
+    p.items.forEach(i=>{ if(!bycat[i.cat]) bycat[i.cat]=[]; bycat[i.cat].push(i); });
+    const totalQty = p.items.reduce((s,i)=>s+i.qty,0);
+    html+=`<div class="pedido-card">
+      <div class="pedido-card-header" onclick="togglePedidoCard(this)">
+        <div style="flex:1">
+          <div class="pedido-num">${p.id}</div>
+          <div class="pedido-fecha">Entrega: ${formatFecha(p.fecha)}</div>
+          <div class="pedido-hora">${formatTs(p.timestamp)} · ${totalQty} ítems</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+          <span class="estado-badge ${estadoClass}">${estadoLabel}</span>
+          ${p.editado?'<span class="editado-badge">✏️ Editado</span>':''}
+        </div>
+      </div>
+      <div class="pedido-card-body" style="display:none">
+        ${Object.entries(bycat).map(([cat,items])=>`
+          <div class="pedido-body-section">
+            <div class="pedido-cat-label">${cat}</div>
+            ${items.map(item=>{
+              const editado = item.qty !== item.qty_original;
+              const despachado = item.qty_despachada !== null;
+              const faltante = despachado && item.qty_despachada < item.qty;
+              return `<div class="pedido-item-row">
+                <div class="pedido-item-name">${item.name}</div>
+                ${editado?`<span class="pedido-item-editado">✏️ ${item.qty_original}→${item.qty}</span>`:''}
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">
+                  <div class="pedido-item-qty">${item.qty} ${item.unit}</div>
+                  ${despachado?`<span class="${faltante?'pedido-item-faltante':'pedido-item-despacho'}">${faltante?'Recibido: '+item.qty_despachada:'✓ '+item.qty_despachada+' recibidos'}</span>`:''}
+                </div>
+              </div>`;
+            }).join('')}
+          </div>`).join('')}
+        ${p.comentarios?`<div class="pedido-body-section" style="font-size:12px;color:#6B7280;font-style:italic">${p.comentarios}</div>`:''}
+        <div class="pedido-body-section">
+          <button class="pedido-edit-btn" ${!puedeEdit||p.estado==='despachado'?'disabled':''} onclick="openEditModal('${p.id}')">
+            ${!puedeEdit?'✏️ Edición hasta 6:30am':p.estado==='despachado'?'✏️ Ya despachado':'✏️ Editar pedido'}
+          </button>
+        </div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('historialContent').innerHTML=html;
+  // guardar datos para edición
+  window._historialData = pedidos;
+}
+
+function togglePedidoCard(header) {
+  const body = header.nextElementSibling;
+  body.style.display = body.style.display==='none' ? 'block' : 'none';
+}
+
+// EDICION
+function openEditModal(pedidoId) {
+  const pedido = window._historialData.find(p=>p.id===pedidoId);
+  if(!pedido) return;
+  _editingPedido = pedido;
+  _editQtys = {};
+  pedido.items.forEach(i=>{ _editQtys[i.cat+'|||'+i.name] = i.qty; });
+  const bycat = {};
+  pedido.items.forEach(i=>{ if(!bycat[i.cat]) bycat[i.cat]=[]; bycat[i.cat].push(i); });
+  let html = '';
+  Object.entries(bycat).forEach(([cat,items])=>{
+    html+=`<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#1C3A4A;font-weight:700;margin:12px 0 6px;padding-bottom:4px;border-bottom:1px solid #D0DDE5">${cat}</div>`;
+    items.forEach(item=>{
+      const key=item.cat+'|||'+item.name;
+      const editado=item.qty!==item.qty_original;
+      html+=`<div class="edit-item-row ${editado?'edit-changed':''}" id="editrow-${key.replace(/[^a-zA-Z0-9]/g,'_')}">
+        <div class="edit-item-name">${item.name}${editado?`<div class="edit-changed-label">✏️ Original: ${item.qty_original}</div>`:''}</div>
+        <span style="font-size:10px;background:#F0F4F7;color:#6B7280;padding:2px 7px;border-radius:20px;border:1px solid #D0DDE5">${item.unit}</span>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="editChange('${key}',-1)">−</button>
+          <input class="qty-input" id="editqty-${key.replace(/[^a-zA-Z0-9]/g,'_')}" type="number" value="${item.qty}" min="0"
+            onchange="editSetQty('${key}',this.value)" style="width:48px">
+          <button class="qty-btn" onclick="editChange('${key}',1)">+</button>
+        </div>
+      </div>`;
+    });
+  });
+  document.getElementById('modalEdicionBody').innerHTML=html;
+  document.getElementById('modalEdicionInfo').textContent='Podés editar hasta las 6:30am del día de entrega.';
+  document.getElementById('modalEdicion').classList.add('open');
+}
+
+function editChange(key, delta) {
+  const id='editqty-'+key.replace(/[^a-zA-Z0-9]/g,'_');
+  const input=document.getElementById(id);
+  editSetQty(key,(parseInt(input.value)||0)+delta);
+}
+function editSetQty(key, val) {
+  const v=Math.max(0,parseInt(val)||0);
+  _editQtys[key]=v;
+  const id='editqty-'+key.replace(/[^a-zA-Z0-9]/g,'_');
+  const input=document.getElementById(id);
+  if(input) input.value=v;
+}
+function closeEditModal() { document.getElementById('modalEdicion').classList.remove('open'); }
+
+async function saveEdit() {
+  if(!_editingPedido) return;
+  const items = _editingPedido.items.map(item=>{
+    const key=item.cat+'|||'+item.name;
+    return {cat:item.cat,name:item.name,qty:_editQtys[key]||0};
+  });
+  showLoading(true);
+  const res = await api({action:'editPedido',data:JSON.stringify({id:_editingPedido.id,items})}).catch(()=>null);
+  showLoading(false);
+  if(res&&res.ok) {
+    closeEditModal();
+    loadHistorial();
+  } else {
+    const msg = res&&res.error ? res.error : 'Error al guardar.';
+    alert(msg);
+  }
+}
+
+// CHANGE PIN
 async function saveNewPin() {
-  const cur = document.getElementById('cpCurrent').value;
-  const nw = document.getElementById('cpNew').value;
-  const conf = document.getElementById('cpConfirm').value;
-  const ok = document.getElementById('cpOk');
-  const err = document.getElementById('cpErr');
-  ok.textContent = ''; err.textContent = '';
-  const pins = loadPins();
-  if (cur !== (pins[currentRole]||'')) { err.textContent = 'El PIN actual no es correcto.'; return; }
-  if (!/^\d{4}$/.test(nw)) { err.textContent = 'El PIN nuevo debe tener exactamente 4 dígitos.'; return; }
-  if (nw !== conf) { err.textContent = 'Los PINs nuevos no coinciden.'; return; }
-  pins[currentRole] = nw;
+  const cur=document.getElementById('cpCurrent').value;
+  const nw=document.getElementById('cpNew').value;
+  const conf=document.getElementById('cpConfirm').value;
+  const ok=document.getElementById('cpOk');
+  const err=document.getElementById('cpErr');
+  ok.textContent=''; err.textContent='';
+  const pins=_cache.pins;
+  if(cur!==(pins[currentRole]||'')){ err.textContent='El PIN actual no es correcto.'; return; }
+  if(!/^\d{4}$/.test(nw)){ err.textContent='El PIN debe tener 4 dígitos.'; return; }
+  if(nw!==conf){ err.textContent='Los PINs no coinciden.'; return; }
+  pins[currentRole]=nw;
   await savePins(pins);
-  ok.textContent = '✓ PIN actualizado correctamente.';
-  document.getElementById('cpCurrent').value = '';
-  document.getElementById('cpNew').value = '';
-  document.getElementById('cpConfirm').value = '';
-  setTimeout(() => showScreen('screenOrder'), 1500);
+  ok.textContent='✓ PIN actualizado.';
+  document.getElementById('cpCurrent').value='';
+  document.getElementById('cpNew').value='';
+  document.getElementById('cpConfirm').value='';
+  setTimeout(()=>showScreen('screenOrder'),1500);
 }
 
-// ══ KEYBOARD PIN ══
-document.addEventListener('keydown', function(e) {
-  if (!document.getElementById('screenPin').classList.contains('active')) return;
-  if (e.key >= '0' && e.key <= '9') pinPress(e.key);
-  else if (e.key === 'Backspace') pinDel();
+// KEYBOARD
+document.addEventListener('keydown',function(e){
+  if(!document.getElementById('screenPin').classList.contains('active')) return;
+  if(e.key>='0'&&e.key<='9') pinPress(e.key);
+  else if(e.key==='Backspace') pinDel();
 });
 
-// ══ INIT ══
+// INIT
 async function initApp() {
-  // Mostrar login de inmediato, sin esperar la API
   const remembered = loadRemembered();
-  if (remembered) {
+  if(remembered) {
     currentRole = remembered;
     showScreen('screenOrder');
-    // Cargar datos en background
     enterOrder();
   } else {
     showScreen('screenLogin');
   }
-  // Cargar PINs en background (no bloquea el render)
-  try {
-    const res = await api({ action: 'getPins' });
-    if (res && res.ok) { _cache.pins = res.data; _cache.fab_pin = res.fab_pin; }
-  } catch(e) {}
+  _pinsPromise = api({action:'getPins'}).then(res=>{
+    if(res&&res.ok){ _cache.pins=res.data; _cache.fab_pin=res.fab_pin; }
+    _pinsLoaded=true;
+  }).catch(()=>{ _pinsLoaded=true; });
 }
 
-(async () => { await initApp(); })();
+(async()=>{ await initApp(); })();
 </script>
 </body>
 </html>
